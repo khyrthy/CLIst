@@ -37,17 +37,18 @@ if not len(sys.argv) == 1:
         print("clist remove task [project] [task index]" + Style.RESET_ALL)
         print("Delete a project or delete a task in a project")
 
+    # List command : list all the projects and tasks or project's tasks
     elif sys.argv[1] == "list":
 
+        # clist list
         if len(sys.argv) == 2:
 
+            # Will check if projects table isn't empty.
+            # If so, will display a "No Project" message.
             if not len(table.projects) == 0:
 
                 print(Fore.CYAN + "All tasks :" + Style.RESET_ALL)
-
-
                 for project in table.projects:
-
                     print()
                     print(Fore.CYAN + project.name + Style.RESET_ALL)
 
@@ -57,28 +58,36 @@ if not len(sys.argv) == 1:
 
                         print()
 
+                    # Check if project's taskslist is empty
+                    # If so, it will display a "No task" message
                     if not len(project.tasks) == 0:
                         i = 1
                         for task in project.tasks:
                             print("[" + str(i) + "] " + task)
                             i += 1
 
+                    # Will display a "No task remaining" message if all the tasks are marked as done
+                    elif len(project.tasks) == 0 and not len(project.achieved) == 0:
+                        print("No task remaining.")
+
+                    # Simply display a "No Task" message if the list is completely blank
                     else:
                         print("No task.")
 
+            # Display a "No project" message if the table is empty
             else:
                 print(Fore.CYAN + "You didn't added any project. Add a project with  :\n" + Style.RESET_ALL + "clist add project")
 
+        # Accepts a [project] argument to display list of tasks in a specific project
         elif len(sys.argv) == 3:
 
+            # Search for the project in the table
             found = False
-
             for project in table.projects:
 
                 if project.name == sys.argv[2]:
 
                     found = True
-
                     print(Fore.CYAN + "Tasks in " + project.name + ": " + Style.RESET_ALL)
 
                     if not len(project.achieved) == 0:
@@ -122,7 +131,7 @@ if not len(sys.argv) == 1:
 
                     except ValueError:
 
-                        print(Fore.RED + "Task index must be number." + Style.RESET_ALL)
+                        print(Fore.RED + sys.argv[3] + " : Invalid index" + Style.RESET_ALL)
 
                     except IndexError:
 
@@ -176,12 +185,15 @@ if not len(sys.argv) == 1:
                 try:
                     found = False
 
-                    for project in Table.projects:
+                    for project in table.projects:
 
                         if project.name == sys.argv[3]:
 
-                            found = True
-                            project.rm_task(sys.argv[4])
+                            try:
+                                found = True
+                                project.rm_task(int(sys.argv[4]))
+                            except ValueError:
+                                print(Fore.RED + sys.argv[4] + " : Invalid index" + Style.RESET_ALL)
 
                     if not found:
 
