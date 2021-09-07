@@ -37,7 +37,7 @@ CLIst saves your tasks and your project into a file named `projects.table` at `~
 
 ## Installing CList
 
-CList binaries are available on Debian-based, Red-Hat-based and Arch-based distros.  
+CList binaries are available on Debian-based, Red-Hat-based and Arch-based and Slackware distros.  
 To install one of that packages, just visit [this page](https://github.com/khyrthy/clist/releases)
 
 ### Installing from the source code
