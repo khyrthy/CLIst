@@ -33,4 +33,35 @@ Here are all the commands that CList understands:
 
 ### Exporting taskboards
 
-CLIst saves your tasks and your project into a file named `projects.table` at `~/.local/share/clist/projects.table` You can eventually export it and share it
+CLIst saves your tasks and your project into a file named `projects.table` at `~/.local/share/clist/projects.table` You can eventually export it and share it.
+
+## Installing CList
+
+CList binaries are available on Debian-based, Red-Hat-based and Arch-based distros.  
+To install one of that packages, just visit [this page](https://github.com/khyrthy/clist/releases)
+
+### Installing from the source code
+
+First start by cloning the repo:
+```
+git clone https://github.com/khyrthy/clist.git
+cd clist
+```
+
+Now let's create the folders we need:
+```
+sudo mkdir /usr/share/clist
+mkdir ~/.local/share/clist
+```
+
+Finish installing by copying the files:
+```
+sudo cp ./clist.py ./classes.py /usr/share/clist
+```
+
+Eventually, create a symlink pointing to /usr/share/clist/clist.py into /usr/bin
+```
+sudo ln -s /usr/share/clist/clist.py /usr/bin/clist
+```
+
+And there you go with a fresh clist installation!
