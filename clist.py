@@ -222,4 +222,9 @@ else:
 
 
 # Save the changes to the table
-pickle.dump(table, open(os.path.join(os.getenv("HOME"), ".local/share/clist", "projects.table"), "wb"))
+try:
+    pickle.dump(table, open(os.path.join(os.getenv("HOME"), ".local/share/clist", "projects.table"), "wb"))
+except FileNotFoundError:
+    print(Fore.YELLOW + "WARNING:", os.path.join(os.getenv("HOME"), ".local/share/clist"), "doesn't exists. Creating directory.")
+    os.mkdir(os.path.join(os.getenv("HOME"), ".local/share/clist"))
+    pickle.dump(table, open(os.path.join(os.getenv("HOME"), ".local/share/clist", "projects.table"), "wb"))
