@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # CLIst main file
 
-import pickle, sys
+import pickle, sys, os
 from classes import Table
 from colorama import *
 
 # Load the existing table or create a new one
 try:
-    open("projects.table", "r").close()
-    table = pickle.load(open("projects.table", "rb"))
+    open(os.path.join(os.getenv("HOME"), ".local/share/clist", "projects.table"), "r").close()
+    table = pickle.load(open(os.path.join(os.getenv("HOME"), ".local/share/clist", "projects.table"), "rb"))
 
 except FileNotFoundError:
     table = Table()
@@ -222,4 +222,4 @@ else:
 
 
 # Save the changes to the table
-pickle.dump(table, open("projects.table", "wb"))
+pickle.dump(table, open(os.path.join(os.getenv("HOME"), ".local/share/clist", "projects.table"), "wb"))
